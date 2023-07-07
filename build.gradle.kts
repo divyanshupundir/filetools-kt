@@ -39,7 +39,7 @@ allprojects {
             signAllPublications()
 
             pom {
-                description.set("")
+                description.set("Simple high level constructs to handle common file types.")
                 name.set(project.name)
                 inceptionYear.set("2023")
                 url.set("https://github.com/divyanshupundir/filetools-kt/")
@@ -47,7 +47,7 @@ allprojects {
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                         distribution.set("repo")
                     }
                 }
@@ -68,6 +68,14 @@ allprojects {
             }
         }
     }
+}
+
+task("publishAll") {
+    dependsOn(":filetools:publish")
+}
+
+task("closeAndReleaseAll") {
+    dependsOn(":filetools:closeAndReleaseRepository")
 }
 
 task("createGitTag") {

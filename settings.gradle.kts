@@ -19,3 +19,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "filetools-kt"
+
+include(":filetools")
