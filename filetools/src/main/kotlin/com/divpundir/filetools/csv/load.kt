@@ -8,7 +8,7 @@ public fun <T> loadCsvFile(
     pathname: String,
     serializer: CsvFile.Serializer<T>,
     createFile: Boolean = true,
-    ignoreInvalid: Boolean = true
+    ignoreInvalid: Boolean = true,
 ): CsvFile<T> {
     val file = File(pathname)
     if (!file.exists()) {

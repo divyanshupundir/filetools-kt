@@ -8,7 +8,7 @@ public fun <T> loadJsonFile(
     pathname: String,
     serializer: JsonFile.Serializer<T>,
     createFile: Boolean = true,
-    fallback: (() -> T)? = null
+    fallback: (() -> T)? = null,
 ): JsonFile<T> {
     val file = File(pathname)
     if (!file.exists()) {

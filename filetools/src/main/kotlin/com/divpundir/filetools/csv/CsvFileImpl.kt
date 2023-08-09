@@ -5,7 +5,7 @@ import java.io.File
 internal class CsvFileImpl<T>(
     private val file: File,
     initial: List<T>,
-    private val serializer: CsvFile.Serializer<T>
+    private val serializer: CsvFile.Serializer<T>,
 ) : CsvFile<T> {
 
     private val _entries: MutableList<T> = initial.toMutableList()
@@ -21,9 +21,9 @@ internal class CsvFileImpl<T>(
     }
 
     override fun write() {
-        val content = entries.joinToString("\n") { serializer.toRow(it) }
-        synchronized(this) {
-            file.writeText(content)
+        val content = synchronized(this) {
+            entries.joinToString("\n") { serializer.toRow(it) }
         }
+        file.writeText(content)
     }
 }

@@ -13,7 +13,7 @@ private val String.isQuoted get() = this.startsWith("\"") && this.endsWith("\"")
 public fun loadEnvFile(
     pathname: String,
     createFile: Boolean = true,
-    ignoreInvalid: Boolean = true
+    ignoreInvalid: Boolean = true,
 ): EnvFile {
     val file = File(pathname)
     if (!file.exists()) {

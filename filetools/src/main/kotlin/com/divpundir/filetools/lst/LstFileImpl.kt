@@ -4,7 +4,7 @@ import java.io.File
 
 internal class LstFileImpl(
     private val file: File,
-    initial: List<String>
+    initial: List<String>,
 ) : LstFile {
 
     private val _entries: MutableList<String> = initial.toMutableList()
@@ -16,9 +16,9 @@ internal class LstFileImpl(
     }
 
     override fun write() {
-        val content = entries.joinToString("\n")
-        synchronized(this) {
-            file.writeText(content)
+        val content = synchronized(this) {
+            entries.joinToString("\n")
         }
+        file.writeText(content)
     }
 }

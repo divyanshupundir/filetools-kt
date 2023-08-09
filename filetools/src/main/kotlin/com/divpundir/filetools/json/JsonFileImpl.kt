@@ -5,7 +5,7 @@ import java.io.File
 internal class JsonFileImpl<T>(
     private val file: File,
     initial: T,
-    private val serializer: JsonFile.Serializer<T>
+    private val serializer: JsonFile.Serializer<T>,
 ) : JsonFile<T> {
 
     private var _value = initial
@@ -16,9 +16,9 @@ internal class JsonFileImpl<T>(
     }
 
     override fun write() {
-        val content = serializer.toJson(value)
-        synchronized(this) {
-            file.writeText(content)
+        val content = synchronized(this) {
+            serializer.toJson(value)
         }
+        file.writeText(content)
     }
 }

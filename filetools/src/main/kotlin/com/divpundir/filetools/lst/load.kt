@@ -6,7 +6,7 @@ import java.io.FileNotFoundException
 public fun loadLstFile(
     pathname: String,
     createFile: Boolean = true,
-    filter: (String) -> Boolean = { true }
+    filter: (String) -> Boolean = { true },
 ): LstFile {
     val file = File(pathname)
     if (!file.exists()) {
