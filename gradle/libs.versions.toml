@@ -1,0 +1,9 @@
+[versions]
+kotlin = "1.9.10"
+
+[libraries]
+
+[plugins]
+dokka = { id = "org.jetbrains.dokka", version = "1.9.10" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+mavenpublish = { id = "com.vanniktech.maven.publish.base", version = "0.24.0" }

@@ -2,20 +2,11 @@ import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.vanniktech:gradle-maven-publish-plugin:0.24.0")
-    }
-}
-
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.mavenpublish)
+    alias(libs.plugins.dokka)
 }
-
-apply(plugin = "com.vanniktech.maven.publish.base")
 
 allprojects {
     group = Config.group
@@ -30,6 +21,10 @@ allprojects {
         kotlinOptions {
             jvmTarget = Config.javaVersion.toString()
         }
+    }
+
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
     }
 
     @Suppress("UnstableApiUsage")
