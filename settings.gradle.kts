@@ -3,10 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
-    plugins {
-        kotlin("jvm") version "1.8.21"
-        id("com.vanniktech.maven.publish") version "0.24.0"
-    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -15,6 +11,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+    }
+    versionCatalogs {
+        create("testlibs") {
+            from(files("gradle/testlibs.versions.toml"))
+        }
     }
 }
 
