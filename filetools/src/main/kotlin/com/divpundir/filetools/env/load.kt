@@ -10,6 +10,14 @@ private val ENTRY_PATTERN = Pattern.compile("""^\s*([\w.\-]+)\s*(=)\s*(.*)?\s*$"
 private val String.isComment get() = this.startsWith("#") || this.startsWith("////")
 private val String.isQuoted get() = this.startsWith("\"") && this.endsWith("\"")
 
+/**
+ * Loads an environment file from the given [pathname] and returns an [EnvFile] instance.
+ *
+ * If [createFile] is true, the file is created if it does not exist.
+ *
+ * The file is read and parsed into a map of entries. If [ignoreInvalid] is true, invalid entries are ignored during
+ * parsing, otherwise an [InvalidDataException] is thrown.
+ */
 public fun loadEnvFile(
     pathname: String,
     createFile: Boolean = true,
@@ -24,7 +32,8 @@ public fun loadEnvFile(
         file.createNewFile()
     }
 
-    val initial = file.readLines()
+    val initial = file
+        .readLines()
         .map { it.trim() }
         .filterNot { it.isBlank() || it.isComment }
         .mapNotNull {

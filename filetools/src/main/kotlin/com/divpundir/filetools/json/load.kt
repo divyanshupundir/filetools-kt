@@ -4,6 +4,14 @@ import com.divpundir.filetools.InvalidDataException
 import java.io.File
 import java.io.FileNotFoundException
 
+/**
+ * Loads a JSON file from the given [pathname] and returns a [JsonFile] instance.
+ *
+ * If [createFile] is true, the file is created if it does not exist.
+ *
+ * The file is read and parsed into a value using the provided [serializer]. If the data is invalid, [fallback] is used
+ * to create a value.
+ */
 public fun <T> loadJsonFile(
     pathname: String,
     serializer: JsonFile.Serializer<T>,
